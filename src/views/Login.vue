@@ -7,7 +7,7 @@ import backgroundImage from '@/images/home-background-DuuOsHM--1.jpg'
 // Import your custom login form components
 import LoginForm from '@/components/auth/LoginForm.vue'
 import SendResetForm from '@/components/auth/SendResetForm.vue'
- 
+
 const authStore = useAuthStore()
 const route = useRoute()
 const router = useRouter()
@@ -44,7 +44,12 @@ onMounted(async () => {
 
 <template>
   <div class="row">
-    <img src="@/images/Nauticstar-Blue-Logo.jpg" alt="NauticStar Boats" style="width: 300px;" class="logo mb-3" />
+    <img
+      src="@/images/Nauticstar-Blue-Logo.jpg"
+      alt="NauticStar Boats"
+      style="width: 300px"
+      class="logo mb-3"
+    />
   </div>
   <div class="row">
     <div
@@ -58,8 +63,8 @@ onMounted(async () => {
             <h1 class="fw-bold text-uppercase">Dealer Digital Asset Library</h1>
             <div class="separator"></div>
             <p>
-              Engage your customers with high-quality branded content from NauticStar Boats. New users
-              can request access, existing users can login below.
+              Engage your customers with high-quality branded content from NauticStar Boats. New
+              users can request access, existing users can login below.
             </p>
 
             <!-- Login & Password Reset Forms -->
@@ -98,15 +103,15 @@ onMounted(async () => {
             emails, boat show, and PR applications.
           </p>
           <p>
-            NauticStar Boats' policy is to cooperate enthusiastically with the media and press.
-            Direct inquiries to:
+            Pricing, specification sheets, product information guides, and other helpful sales tools
+            are available.
           </p>
         </div>
         <div class="col-lg-4">
-          <h4>Sales Resources</h4>
+          <h4>Marketing Contacts</h4>
           <p>
-            Pricing, specification sheets, product information guides, and other helpful sales tools
-            are available.
+            NauticStar Boats' policy is to cooperate enthusiastically with the media and press.
+            Direct inquiries to:
           </p>
           <p>
             <b>Ryan Fritinger</b> - Marketing Manager<br />
@@ -116,9 +121,7 @@ onMounted(async () => {
           </p>
           <p>
             <b>Tyson Moran</b> - Marketing Director<br />
-            <a href="mailto:tyson@bigthundermarine.com"
-              >tyson@bigthundermarine.com</a
-            >
+            <a href="mailto:tyson@bigthundermarine.com">tyson@bigthundermarine.com</a>
           </p>
         </div>
       </div>
@@ -127,7 +130,8 @@ onMounted(async () => {
       <div class="col">
         <p class="disclaimer">
           NauticStar Boats grants blanket permission to use any of the provided photography, logos,
-          ads and other assets for "legitimate and favorable" benefit to the NauticStar Boats brand.
+          ads and <br />
+          other assets for "legitimate and favorable" benefit to the NauticStar Boats brand.
         </p>
       </div>
     </div>
