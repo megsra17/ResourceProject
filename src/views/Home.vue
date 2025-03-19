@@ -50,7 +50,10 @@
       :style="{ backgroundImage: `url(${backgroundImage})` }"
     >
       <div class="hero-inner text-start text-white">
-        <h1>Dealer<br />Resources</h1>
+        <h1>
+          NauticStar <br />
+          Dealer<br />Resources
+        </h1>
         <div class="separator w-25"></div>
       </div>
     </div>
@@ -67,62 +70,71 @@
           </p>
           <h5 class="fw-bold mb-0">Chesapeake Bay Region</h5>
           <p class="mb-0">
-            Ryan Kagy -
-            <a :href="getContactLink('ryankagy3@gmail.com')" class="text-decoration-none">
-              ryankagy3@gmail.com
+            Ryan Kagy -<a :href="getContactLink('ryankagy3@gmail.com')" class="text-decoration-none"
+              >ryankagy3@gmail.com
             </a>
           </p>
           <p>
-            Connor Radcliff -
-            <a
+            Connor Radcliff -<a
               :href="getContactLink('connor.radcliff@nauticstarboats.com')"
               class="text-decoration-none"
-            >
-              connor.radcliff@nauticstarboats.com
+              >connor.radcliff@nauticstarboats.com
             </a>
           </p>
           <h5 class="fw-bold mt-3 mb-0">Northeast & Canada Region</h5>
           <p>
-            Ryan Kagy -
-            <a :href="getContactLink('ryankagy3@gmail.com')" class="text-decoration-none">
-              ryankagy3@gmail.com
+            Ryan Kagy -<a :href="getContactLink('ryankagy3@gmail.com')" class="text-decoration-none"
+              >ryankagy3@gmail.com
             </a>
           </p>
         </div>
 
         <!-- Chesapeake Bay Region & Southeast Contacts -->
         <div class="col-lg-4 col-md-6 mb-4 custom-border">
-          <h5 class="fw-bold mt-3 mb-0">Southeast and Southwest Region</h5>
+          <h5 class="fw-bold mt-3 mb-0">Southeast Region</h5>
           <p class="mb-0">
-            Nat Rich -
-            <a :href="getContactLink('nat.ritch@nauticstarboats.com')" class="text-decoration-none">
-              nat.ritch@nauticstarboats.com
+            Nat Rich -<a
+              :href="getContactLink('nat.ritch@nauticstarboats.com')"
+              class="text-decoration-none"
+              >nat.ritch@nauticstarboats.com
+            </a>
+          </p>
+          <h5 class="fw-bold mt-3 mb-0">Southwest Region</h5>
+          <p class="mb-0">
+            Darren Landry -<a
+              :href="getContactLink('darren.landry@nauticstarboats.com')"
+              class="text-decoration-none"
+              >darren.landry@nauticstarboats.com
+            </a>
+          </p>
+          <p class="mb-0">
+            Hunter Landry -<a
+              :href="getContactLink('hunter.landry@nauticstarboats.com')"
+              class="text-decoration-none"
+              >hunter.landry@nauticstarboats.com
             </a>
           </p>
           <h5 class="fw-bold mt-3 mb-0">Midwest and Florida Region</h5>
           <p class="mb-0">
-            Dennis Radcliff -
-            <a :href="getContactLink('dennisradcliff@icloud.com')" class="text-decoration-none">
-              dennisradcliff@icloud.com
+            Dennis Radcliff -<a
+              :href="getContactLink('dennisradcliff@icloud.com')"
+              class="text-decoration-none"
+              >dennisradcliff@icloud.com
             </a>
           </p>
           <p>
-            Connor Radcliff -
-            <a
+            Connor Radcliff -<a
               :href="getContactLink('connor.radcliff@nauticstarboats.com')"
               class="text-decoration-none"
-            >
-              connor.radcliff@nauticstarboats.com
+              >connor.radcliff@nauticstarboats.com
             </a>
           </p>
           <h5 class="fw-bold mt-3 mb-0">West Region</h5>
           <p>
-            Brian Allred -
-            <a
+            Brian Allred -<a
               :href="getContactLink('dbrian.allred@nauticstarboats.com')"
               class="text-decoration-none"
-            >
-              brian.allred@nauticstarboats.com
+              >brian.allred@nauticstarboats.com
             </a>
           </p>
         </div>
@@ -137,13 +149,12 @@
             <a
               :href="getContactLink('ryan.fritinger@nauticstarboats.com')"
               class="text-decoration-none"
-            >
-              ryan.fritinger@nauticstarboats.com
+              >ryan.fritinger@nauticstarboats.com
             </a>
           </p>
           <p>
             <b>Tyson Moran</b> - Marketing Manager<br />
-            <a href="tel:3308888474" class="text-decoration-none">330.888.8474</a> |
+            <a href="tel:8162623867" class="text-decoration-none">816.262.3867</a> |
             <a :href="getContactLink('tyson@bigthundermarine.com')" class="text-decoration-none">
               tyson@bigthundermarine.com
             </a>
