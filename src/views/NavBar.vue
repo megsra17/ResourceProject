@@ -15,7 +15,7 @@
             target="_blank"
             href="https://wakeeffects.com/collections/shop-by-brand-nauticstar"
           >
-            Dealer Appeal
+            Dealer Apparel
           </a>
           <a
             v-if="authStore.isAdmin"

@@ -88,7 +88,7 @@ onMounted(async () => {
 
     <!-- Callouts Section -->
     <div class="callouts">
-      <div class="row mx-5 g-5">
+      <div class="row mx-lg-5 g-5">
         <div class="col-lg-4">
           <h4>Photography & Video</h4>
           <p>
@@ -126,7 +126,7 @@ onMounted(async () => {
         </div>
       </div>
     </div>
-    <div class="row mx-5">
+    <div class="row mx-lg-5">
       <div class="col">
         <p class="disclaimer">
           NauticStar Boats grants blanket permission to use any of the provided photography, logos,
