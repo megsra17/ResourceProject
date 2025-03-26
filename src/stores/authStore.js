@@ -5,12 +5,18 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
-    user: JSON.parse(localStorage.getItem('user') || 'null'), // Prevent JSON parsing errors
+    user: JSON.parse(localStorage.getItem('user') || 'null'),
     token: localStorage.getItem('token') || null,
+    // Read the token expiration from localStorage, if it exists.
+    tokenExpires: localStorage.getItem('tokenExpires')
+      ? parseInt(localStorage.getItem('tokenExpires'))
+      : null,
   }),
 
   getters: {
-    isAuthenticated: (state) => !!state.token,
+    // Token is considered valid only if it exists and hasn't expired.
+    isAuthenticated: (state) =>
+      !!state.token && !!state.tokenExpires && Date.now() < state.tokenExpires,
     getUser: (state) => state.user,
     userRole: (state) => (state.user ? state.user.role : 'user'),
     isAdmin: (state) => state.user && state.user.role === 'admin',
@@ -30,8 +36,13 @@ export const useAuthStore = defineStore('auth', {
         const { user, token } = response.data
         this.user = user
         this.token = token
+        // Set expiration: 25 hours from now.
+        const expiresAt = Date.now() + 25 * 3600 * 1000
+        this.tokenExpires = expiresAt
+
         localStorage.setItem('user', JSON.stringify(user))
         localStorage.setItem('token', token)
+        localStorage.setItem('tokenExpires', expiresAt.toString())
       } catch (error) {
         console.error('Login error:', error)
         throw new Error(error.response?.data?.error || 'Login failed.')
@@ -46,14 +57,15 @@ export const useAuthStore = defineStore('auth', {
         }
         this.user = null
         this.token = null
+        this.tokenExpires = null
         localStorage.removeItem('user')
         localStorage.removeItem('token')
+        localStorage.removeItem('tokenExpires')
       } catch (error) {
         console.error('Logout error:', error)
       }
     },
 
-    // Send a password reset request (email-based)
     async sendResetRequest(email) {
       try {
         const response = await axios.post(`${API_URL}/api/users/reset-password-request`, { email })
@@ -64,7 +76,6 @@ export const useAuthStore = defineStore('auth', {
       }
     },
 
-    // Reset the password using the provided token and new password
     async resetPassword(token, newPassword) {
       try {
         const response = await axios.post(`${API_URL}/api/users/reset-password`, {
@@ -78,7 +89,6 @@ export const useAuthStore = defineStore('auth', {
       }
     },
 
-    // Optional: Verify the reset token without resetting the password
     async verifyResetToken(token) {
       try {
         const response = await axios.get(`${API_URL}/api/users/verify-reset-token?token=${token}`)
