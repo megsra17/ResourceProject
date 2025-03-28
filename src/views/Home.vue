@@ -241,19 +241,14 @@
                 <p class="card-text d-flex align-items-center justify-content-center">
                   Download:
                   <a
-                    :href="img.url.replace('/upload/', '/upload/fl_attachment/') + '?dl=1'"
+                    :href="getDownloadLink(img.url)"
                     download
                     class="ever-text-primary text-hover-primary ms-1"
                   >
                     High Res
                   </a>
                   <a
-                    :href="
-                      img.url.replace(
-                        '/upload/',
-                        '/upload/q_auto:eco,w_1920,h_1280,c_fit/fl_attachment/',
-                      ) + '?dl=1'
-                    "
+                    :href="getDownloadLink(img.url, true)"
                     download
                     class="ever-text-primary text-hover-primary ms-2"
                   >
@@ -526,6 +521,21 @@ watch(
     }
   },
 )
+
+function getDownloadLink(url, isLowRes = false) {
+  const isVideo = url.toLowerCase().endsWith('.mp4')
+  if (isLowRes) {
+    if (isVideo) {
+      return url.replace('/upload/', '/upload/fl_attachment/') + '?dl=1'
+    } else {
+      return (
+        url.replace('/upload/', '/upload/q_auto:eco,w_1920,h_1280,c_fit/fl_attachment/') + '?dl=1'
+      )
+    }
+  } else {
+    return url.replace('/upload/', '/upload/fl_attachment/') + '?dl=1'
+  }
+}
 
 function getPreviewUrl(url) {
   const lowerUrl = url.toLowerCase()
