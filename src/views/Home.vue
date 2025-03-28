@@ -241,7 +241,7 @@
                 <p class="card-text d-flex align-items-center justify-content-center">
                   Download:
                   <a
-                    :href="img.url.replace('/upload/', '/upload/fl_attachment/')"
+                    :href="img.url.replace('/upload/', '/upload/fl_attachment/') + '?dl=1'"
                     download
                     class="ever-text-primary text-hover-primary ms-1"
                   >
@@ -252,7 +252,7 @@
                       img.url.replace(
                         '/upload/',
                         '/upload/q_auto:eco,w_1920,h_1280,c_fit/fl_attachment/',
-                      )
+                      ) + '?dl=1'
                     "
                     download
                     class="ever-text-primary text-hover-primary ms-2"
