@@ -3,18 +3,25 @@ import axios from 'axios'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
 
+// Immediately clear expired tokens from localStorage on load.
+const storedTokenExpires = localStorage.getItem('tokenExpires')
+if (storedTokenExpires && Date.now() > parseInt(storedTokenExpires)) {
+  localStorage.removeItem('token')
+  localStorage.removeItem('user')
+  localStorage.removeItem('tokenExpires')
+}
+
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     user: JSON.parse(localStorage.getItem('user') || 'null'),
     token: localStorage.getItem('token') || null,
-    // Read the token expiration from localStorage, if it exists.
     tokenExpires: localStorage.getItem('tokenExpires')
       ? parseInt(localStorage.getItem('tokenExpires'))
       : null,
   }),
 
   getters: {
-    // Token is considered valid only if it exists and hasn't expired.
+    // Token is valid only if it exists and hasn't expired.
     isAuthenticated: (state) =>
       !!state.token && !!state.tokenExpires && Date.now() < state.tokenExpires,
     getUser: (state) => state.user,
@@ -43,6 +50,15 @@ export const useAuthStore = defineStore('auth', {
         localStorage.setItem('user', JSON.stringify(user))
         localStorage.setItem('token', token)
         localStorage.setItem('tokenExpires', expiresAt.toString())
+
+        // Set a timer to auto-logout when the token expires.
+        const remainingTime = expiresAt - Date.now()
+        setTimeout(() => {
+          // Double-check that the token hasn't been refreshed.
+          if (Date.now() >= this.tokenExpires) {
+            this.logout()
+          }
+        }, remainingTime)
       } catch (error) {
         console.error('Login error:', error)
         throw new Error(error.response?.data?.error || 'Login failed.')
@@ -96,6 +112,13 @@ export const useAuthStore = defineStore('auth', {
       } catch (error) {
         console.error('Verify token error:', error)
         throw new Error(error.response?.data?.error || 'Token verification failed.')
+      }
+    },
+
+    // Optional: Action to manually check token expiration.
+    checkTokenExpiration() {
+      if (this.tokenExpires && Date.now() >= this.tokenExpires) {
+        this.logout()
       }
     },
   },
