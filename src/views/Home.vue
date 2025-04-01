@@ -34,6 +34,25 @@
   border-right: 1px solid black;
 }
 
+.position-relative {
+  position: relative;
+}
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+}
+
 @media (max-width: 991px) {
   .custom-border {
     border-right: none;
@@ -221,17 +240,27 @@
             class="col-md-3 mb-4 text-center"
           >
             <div class="card h-100 d-flex flex-column justify-content-between">
-              <!-- Card image -->
-              <img
-                :src="getPreviewUrl(img.url)"
-                :alt="img.alt"
-                class="card-img-top"
-                style="object-fit: cover; max-height: 200px"
-              />
+              <!-- Card image with play button overlay for videos -->
+              <div class="position-relative">
+                <img
+                  :src="getPreviewUrl(img.url)"
+                  :alt="img.alt"
+                  class="card-img-top"
+                  style="object-fit: cover; max-height: 200px"
+                />
+                <!-- Show the play button overlay if the asset is a video -->
+                <template v-if="img.url.toLowerCase().endsWith('.mp4')">
+                  <button
+                    class="play-button"
+                    @click="openVideo(img.url)"
+                  >
+                    ▶
+                  </button>
+                </template>
+              </div>
 
               <!-- Card body -->
               <div class="card-body">
-                <!-- Title -->
                 <p class="card-title fw-bold fs-14">
                   {{ (img.display_name || img.alt).split('/').pop() }}
                 </p>
@@ -266,7 +295,7 @@
                     </a>
                   </template>
                 </p>
-              </div>
+            </div>
               <!-- Card footer (optional) -->
               <div class="card-footer bg-transparent border-0">
                 <button class="btn ever-btn-boarder w-100" @click="openShareModal(img.url)">
@@ -531,6 +560,10 @@ watch(
     }
   },
 )
+
+function openVideo(url) {
+  window.open(url, '_blank');
+}
 
 function getDownloadLink(url, isLowRes = false) {
   const isVideo = url.toLowerCase().endsWith('.mp4');
