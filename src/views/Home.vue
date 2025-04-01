@@ -240,23 +240,33 @@
                 </p>
                 <p class="card-text d-flex align-items-center justify-content-center">
                   Download:
-                  <a
-                    :href="getDownloadLink(img.url)"
-                    download
-                    class="ever-text-primary text-hover-primary ms-1"
-                  >
-                    High Res
-                  </a>
-                  <a
-                    :href="getDownloadLink(img.url, true)"
-                    download
-                    class="ever-text-primary text-hover-primary ms-2"
-                  >
-                    Low Res
-                  </a>
+                  <template v-if="img.url.toLowerCase().endsWith('.mp4')">
+                    <a
+                      :href="getDownloadLink(img.url)"
+                      download
+                      class="ever-text-primary text-hover-primary ms-1"
+                    >
+                      Download Video
+                    </a>
+                  </template>
+                  <template v-else>
+                    <a
+                      :href="getDownloadLink(img.url)"
+                      download
+                      class="ever-text-primary text-hover-primary ms-1"
+                    >
+                      High Res
+                    </a>
+                    <a
+                      :href="getDownloadLink(img.url, true)"
+                      download
+                      class="ever-text-primary text-hover-primary ms-2"
+                    >
+                      Low Res
+                    </a>
+                  </template>
                 </p>
               </div>
-
               <!-- Card footer (optional) -->
               <div class="card-footer bg-transparent border-0">
                 <button class="btn ever-btn-boarder w-100" @click="openShareModal(img.url)">
@@ -523,17 +533,19 @@ watch(
 )
 
 function getDownloadLink(url, isLowRes = false) {
-  const isVideo = url.toLowerCase().endsWith('.mp4')
-  if (isLowRes) {
-    if (isVideo) {
-      return url.replace('/upload/w_640,c_scale,f_mp4,fl_attachment/') + '?dl=1'
-    } else {
-      return (
-        url.replace('/upload/', '/upload/q_auto:eco,w_1920,h_1280,c_fit/fl_attachment/') + '?dl=1'
-      )
-    }
+  const isVideo = url.toLowerCase().endsWith('.mp4');
+  if (isVideo) {
+    return url.replace('/upload/', '/upload/fl_attachment/') + '?dl=1';
   } else {
-    return url.replace('/upload/', '/upload/fl_attachment/') + '?dl=1'
+    // For images, if low-res is requested, apply the transformation.
+    if (isLowRes) {
+      return url.replace(
+        '/upload/',
+        '/upload/q_auto:eco,w_1920,h_1280,c_fit/fl_attachment/'
+      ) + '?dl=1';
+    } else {
+      return url.replace('/upload/', '/upload/fl_attachment/') + '?dl=1';
+    }
   }
 }
 
