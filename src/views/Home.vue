@@ -246,7 +246,7 @@
                       download
                       class="ever-text-primary text-hover-primary ms-1"
                     >
-                      Download Video
+                      Video
                     </a>
                   </template>
                   <template v-else>
