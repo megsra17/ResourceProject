@@ -176,7 +176,7 @@ h5 {
             </a>
           </p>
           <p>
-            <b>Tyson Moran</b> - Marketing Manager<br />
+            <b>Tyson Moran</b> - Director of Marketing<br />
             <a href="tel:8162623867" class="text-decoration-none">816.262.3867</a> |
             <a :href="getContactLink('tyson@bigthundermarine.com')" class="text-decoration-none">
               tyson@bigthundermarine.com

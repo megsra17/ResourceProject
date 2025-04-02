@@ -120,7 +120,7 @@ onMounted(async () => {
             >
           </p>
           <p>
-            <b>Tyson Moran</b> - Marketing Director<br />
+            <b>Tyson Moran</b> - Director of Marketing<br />
             <a href="mailto:tyson@bigthundermarine.com">tyson@bigthundermarine.com</a>
           </p>
         </div>
