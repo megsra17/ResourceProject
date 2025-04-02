@@ -34,6 +34,10 @@
   border-right: 1px solid black;
 }
 
+h5 {
+  font-size: 18px !important;
+}
+
 .position-relative {
   position: relative;
 }
@@ -87,23 +91,24 @@
             If you require dealer net price sheets, please reach out to your NauticStar regional
             sales manager.
           </p>
+          <p>Click to contact your Regional Sales Manager.</p>
           <h5 class="fw-bold mb-0">Chesapeake Bay Region</h5>
           <p class="mb-0">
-            Ryan Kagy -<a :href="getContactLink('ryankagy3@gmail.com')" class="text-decoration-none"
-              >ryankagy3@gmail.com
+            <a :href="getContactLink('ryankagy3@gmail.com')" class="text-decoration-none"
+              >Ryan Kagy
             </a>
-          </p>
-          <p>
-            Connor Radcliff -<a
+            &
+            <a
               :href="getContactLink('connor.radcliff@nauticstarboats.com')"
               class="text-decoration-none"
-              >connor.radcliff@nauticstarboats.com
+              >Connor Radcliff
             </a>
           </p>
+          <p></p>
           <h5 class="fw-bold mt-3 mb-0">Northeast & Canada Region</h5>
           <p>
-            Ryan Kagy -<a :href="getContactLink('ryankagy3@gmail.com')" class="text-decoration-none"
-              >ryankagy3@gmail.com
+            <a :href="getContactLink('ryankagy3@gmail.com')" class="text-decoration-none">
+              Ryan Kagy
             </a>
           </p>
         </div>
@@ -112,48 +117,47 @@
         <div class="col-lg-4 col-md-6 mb-4 custom-border">
           <h5 class="fw-bold mt-3 mb-0">Southeast Region</h5>
           <p class="mb-0">
-            Nat Rich -<a
-              :href="getContactLink('nat.ritch@nauticstarboats.com')"
-              class="text-decoration-none"
-              >nat.ritch@nauticstarboats.com
+            <a :href="getContactLink('nat.ritch@nauticstarboats.com')" class="text-decoration-none"
+              >Nat Rich
             </a>
           </p>
           <h5 class="fw-bold mt-3 mb-0">Southwest Region</h5>
           <p class="mb-0">
-            Darren Landry -<a
+            <a
               :href="getContactLink('darren.landry@nauticstarboats.com')"
               class="text-decoration-none"
-              >darren.landry@nauticstarboats.com
+            >
+              Darren Landry
             </a>
-          </p>
-          <p class="mb-0">
-            Hunter Landry -<a
+            &
+            <a
               :href="getContactLink('hunter.landry@nauticstarboats.com')"
               class="text-decoration-none"
-              >hunter.landry@nauticstarboats.com
+            >
+              Hunter Landry
             </a>
           </p>
+          <p class="mb-0"></p>
           <h5 class="fw-bold mt-3 mb-0">Midwest and Florida Region</h5>
           <p class="mb-0">
-            Dennis Radcliff -<a
-              :href="getContactLink('dennisradcliff@icloud.com')"
-              class="text-decoration-none"
-              >dennisradcliff@icloud.com
+            <a :href="getContactLink('dennisradcliff@icloud.com')" class="text-decoration-none"
+              >Dennis Radcliff
             </a>
-          </p>
-          <p>
-            Connor Radcliff -<a
+            &
+            <a
               :href="getContactLink('connor.radcliff@nauticstarboats.com')"
               class="text-decoration-none"
-              >connor.radcliff@nauticstarboats.com
+              >Connor Radcliff
             </a>
           </p>
+          <p></p>
           <h5 class="fw-bold mt-3 mb-0">West Region</h5>
           <p>
-            Brian Allred -<a
+            <a
               :href="getContactLink('dbrian.allred@nauticstarboats.com')"
               class="text-decoration-none"
-              >brian.allred@nauticstarboats.com
+            >
+              Brian Allred
             </a>
           </p>
         </div>
@@ -246,16 +250,18 @@
                   :src="getPreviewUrl(img.url)"
                   :alt="img.alt"
                   class="card-img-top"
-                  style="object-fit: cover; max-height: 200px"
+                  :style="{
+                    objectFit: 'contain',
+                    width: '100%',
+                    maxHeight: '200px',
+                    backgroundColor: img.url.toLowerCase().includes('white')
+                      ? '#ccc'
+                      : 'transparent',
+                  }"
                 />
                 <!-- Show the play button overlay if the asset is a video -->
                 <template v-if="img.url.toLowerCase().endsWith('.mp4')">
-                  <button
-                    class="play-button"
-                    @click="openVideo(img.url)"
-                  >
-                    ▶
-                  </button>
+                  <button class="play-button" @click="openVideo(img.url)">▶</button>
                 </template>
               </div>
 
@@ -295,7 +301,7 @@
                     </a>
                   </template>
                 </p>
-            </div>
+              </div>
               <!-- Card footer (optional) -->
               <div class="card-footer bg-transparent border-0">
                 <button class="btn ever-btn-boarder w-100" @click="openShareModal(img.url)">
@@ -562,22 +568,21 @@ watch(
 )
 
 function openVideo(url) {
-  window.open(url, '_blank');
+  window.open(url, '_blank')
 }
 
 function getDownloadLink(url, isLowRes = false) {
-  const isVideo = url.toLowerCase().endsWith('.mp4');
+  const isVideo = url.toLowerCase().endsWith('.mp4')
   if (isVideo) {
-    return url.replace('/upload/', '/upload/fl_attachment/') + '?dl=1';
+    return url.replace('/upload/', '/upload/fl_attachment/') + '?dl=1'
   } else {
     // For images, if low-res is requested, apply the transformation.
     if (isLowRes) {
-      return url.replace(
-        '/upload/',
-        '/upload/q_auto:eco,w_1920,h_1280,c_fit/fl_attachment/'
-      ) + '?dl=1';
+      return (
+        url.replace('/upload/', '/upload/q_auto:eco,w_1920,h_1280,c_fit/fl_attachment/') + '?dl=1'
+      )
     } else {
-      return url.replace('/upload/', '/upload/fl_attachment/') + '?dl=1';
+      return url.replace('/upload/', '/upload/fl_attachment/') + '?dl=1'
     }
   }
 }
