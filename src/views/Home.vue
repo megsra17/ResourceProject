@@ -167,15 +167,6 @@ h5 {
           <h4 class="fw-bold text-decoration-underline">Press Contact</h4>
           <p>NauticStar is enthusiastic to provide media and press assets.</p>
           <p>
-            <b>Ryan Fritinger</b> - Marketing Manager<br />
-            <a href="tel:3308888474" class="text-decoration-none">330.888.8474</a> |
-            <a
-              :href="getContactLink('ryan.fritinger@nauticstarboats.com')"
-              class="text-decoration-none"
-              >ryan.fritinger@nauticstarboats.com
-            </a>
-          </p>
-          <p>
             <b>Tyson Moran</b> - Director of Marketing<br />
             <a href="tel:8162623867" class="text-decoration-none">816.262.3867</a> |
             <a :href="getContactLink('tyson@bigthundermarine.com')" class="text-decoration-none">

@@ -312,7 +312,7 @@ const logout = () => {
 
 // Email contact link
 const contactLink = computed(() => {
-  return `mailto:ryan.fritinger@nauticstarboats.com?subject=${encodeURIComponent(
+  return `mailto:tyson@bigthundermarine.com?subject=${encodeURIComponent(
     'NauticStar Resources Contact Request',
   )}`
 })

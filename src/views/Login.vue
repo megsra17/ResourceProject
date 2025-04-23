@@ -114,12 +114,6 @@ onMounted(async () => {
             Direct inquiries to:
           </p>
           <p>
-            <b>Ryan Fritinger</b> - Marketing Manager<br />
-            <a href="mailto:ryan.fritinger@nauticstarboats.com"
-              >ryan.fritinger@nauticstarboats.com</a
-            >
-          </p>
-          <p>
             <b>Tyson Moran</b> - Director of Marketing<br />
             <a href="mailto:tyson@bigthundermarine.com">tyson@bigthundermarine.com</a>
           </p>
